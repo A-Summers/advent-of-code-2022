@@ -6,6 +6,8 @@ def run_pipeline(raw_data, calc_type):
         item_lists = compartments_list(raw_data)
     elif calc_type == "group_as":
         item_lists = groups_list(raw_data)
+    else:
+        raise ValueError('Supplied calctype is not properly defined')
 
     common_items = calc_common_string_list(item_lists)
     priority_map = calc_full_dict()
