@@ -21,13 +21,13 @@ def score_mapping(strategy):
         }
     elif strategy == "intended":
         dict_map = {
-            "A X": 3,  # loose with scissors
+            "A X": 3,  # lose with scissors
             "A Y": 4,  # draw with rock
             "A Z": 8,  # win with paper
-            "B X": 1,  # loose with rock
+            "B X": 1,  # lose with rock
             "B Y": 5,  # draw with paper
             "B Z": 9,  # win with scissors
-            "C X": 2,  # loose with  paper
+            "C X": 2,  # lose with  paper
             "C Y": 6,  # draw with scissors
             "C Z": 7,  # win with rock
         }
