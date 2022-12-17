@@ -87,6 +87,6 @@ if __name__ == "__main__":
     print("The sum of priorities for items common in both compartments is", common_item_priority)
 
     group_priority = run_pipeline(raw_data, calc_type="group_as")
-    print("The sum of priorities for items common in both compartments is", group_priority)
+    print("The sum of priorities for items common in each group is", group_priority)
 
 
