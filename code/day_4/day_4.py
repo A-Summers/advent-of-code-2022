@@ -1,14 +1,14 @@
 def run_pipeline(raw_data, calc_type):
     processed_input = process_input(raw_data)
     if calc_type == "subset":
-        subset_ind_list = calc_subset_ind_list(processed_input)
+        indicator_list = calc_subset_ind_list(processed_input)
     elif calc_type == "overlap":
-        subset_ind_list = calc_overlap_ind_list(processed_input)
+        indicator_list = calc_overlap_ind_list(processed_input)
     else:
         raise ValueError('Supplied calctype is not properly defined')
 
-    # ind is 1 if subset and 0 otherwise so can just sum over whole list
-    subset_total_val = sum(subset_ind_list)
+    # ind is 1 if subset/overlap and 0 otherwise so can just sum over whole list
+    subset_total_val = sum(indicator_list)
 
     return subset_total_val
 
