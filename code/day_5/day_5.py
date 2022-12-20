@@ -143,5 +143,3 @@ if __name__ == "__main__":
 
     top_row_9001 = move_and_calc_pipe(formatted_instructions, parsed_pos, move_type="9001")
     print("After the new arrangement procedure, the crates on the top are", top_row_9001)
-
-
