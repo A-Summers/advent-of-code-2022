@@ -8,7 +8,7 @@ def generate_dict(raw_data):
     #   - since lists can't be keys in dicts
     current_dir = "/"
     current_dir_lst = [current_dir]
-    full_dict = {"/": [1]}
+    full_dict = {current_dir: [1]}
 
     for val in raw_data:
         # we can ignore the ls command, as it doesn't add any extra information
@@ -57,7 +57,7 @@ def calc_total_sizes_dict(full_dict):
     # exclude first element in values as this is just the depth of the folder
     totals_dict = {}
     for keys in full_dict:
-        # looks at the totals dict for the size of that folder, else use the file size already in list
+        # looks at the totals dict for the size of that folder, else use the file size already in list.
         # because of the prev ordering of the dict, we will be iteratively building up the folder sizes that
         # only have files first
         all_values = [totals_dict[values] if not values.isnumeric() else values for values in full_dict[keys][1:]]
