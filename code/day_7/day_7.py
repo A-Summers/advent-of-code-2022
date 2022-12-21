@@ -3,7 +3,7 @@ def generate_dict(raw_data):
     # and the values represent the file sizes in that dir + full paths of child directories
     # the first value in the list will be the depth of the associated key path
     # keeping track of current dir in both list form (each element representing part of path)
-    #   - to make it easier to drop elements with pop() when cd .. is run
+    #   - to make it easier to drop elements with pop() when cd .. is run, and to keep track of folder depth
     # as well as string form
     #   - since lists can't be keys in dicts
     current_dir = "/"
