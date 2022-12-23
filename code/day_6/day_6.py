@@ -1,4 +1,5 @@
 def run_pipeline(raw_data, num_char):
+    """Takes the raw data and calculates the number of chars needed to be processed"""
     orig_flags = calc_unique_flags(raw_data, num_char)
     char_num_orig = retrieve_char_num_req(orig_flags)
 
@@ -6,8 +7,8 @@ def run_pipeline(raw_data, num_char):
 
 
 def calc_unique_flags(raw_data, num_char):
-    # creates a list of list of unique flags, for each sequential set of num_char characters,
-    # with the final character position in that set
+    """Creates a list of list of unique flags, for each sequential set of num_char characters with the
+    final character position in that set"""
     flags = [[check_if_string_unique(raw_data[i:i + num_char]), i + num_char]
              for i in range(0, len(raw_data)) if len(raw_data[i:i + num_char]) == num_char]
 
@@ -15,7 +16,7 @@ def calc_unique_flags(raw_data, num_char):
 
 
 def check_if_string_unique(char):
-    # checks if a string of letters contains only unique letters
+    """Checks if a string of letters contains only unique letters"""
     x = list(set(char))
     x.sort()
     y = list(char)
@@ -29,7 +30,7 @@ def check_if_string_unique(char):
 
 
 def retrieve_char_num_req(flags):
-    # retrieves the number of characters needed to be processed before the first marker is detected
+    """Retrieves the number of characters needed to be processed before the first marker is detected"""
     char_num = next(x[1] for x in flags if x[0] is True)
 
     return char_num

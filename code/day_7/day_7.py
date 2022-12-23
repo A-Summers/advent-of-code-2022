@@ -1,11 +1,7 @@
 def generate_dict(raw_data):
-    # create dictionary where keys represent all directories (in full),
-    # and the values represent the file sizes in that dir + full paths of child directories
-    # the first value in the list will be the depth of the associated key path
-    # keeping track of current dir in both list form (each element representing part of path)
-    #   - to make it easier to drop elements with pop() when cd .. is run, and to keep track of folder depth
-    # as well as string form
-    #   - since lists can't be keys in dicts
+    """Create dictionary where keys represent all directories (in full),
+     and the values represent the file sizes in that dir + full paths of child directories.
+     The first value in the list will be the depth of the associated key path"""
     current_dir = "/"
     current_dir_lst = [current_dir]
     full_dict = {current_dir: [1]}
@@ -36,7 +32,7 @@ def generate_dict(raw_data):
 
 
 def add_child_obj(val, current_dir_lst, current_dir, full_dict, type):
-    # adds either a folder or file size (based on type), to a parents value in dict
+    """Adds either a folder or file size (based on type), to a parents value in dict"""
     if type == "file":
         new_object = str(val.split()[0])
     elif type == "folder":
@@ -53,13 +49,9 @@ def add_child_obj(val, current_dir_lst, current_dir, full_dict, type):
 
 
 def calc_total_sizes_dict(full_dict):
-    # calculate the size of each directory
-    # exclude first element in values as this is just the depth of the folder
+    """Calculate the size of each directory, exclude first element in values as this is just the depth of the folder"""
     totals_dict = {}
     for keys in full_dict:
-        # looks at the totals dict for the size of that folder, else use the file size already in list.
-        # because of the prev ordering of the dict, we will be iteratively building up the folder sizes that
-        # only have files first
         all_values = [totals_dict[values] if not values.isnumeric() else values for values in full_dict[keys][1:]]
         totals_dict.update({keys: sum(list(map(int, all_values)))})
 
@@ -67,7 +59,7 @@ def calc_total_sizes_dict(full_dict):
 
 
 def calc_total_size(totals_dict, max):
-    # calculate the total size of the directories for all directory sizes <= max
+    """Calculate the total size of the directories for all directory sizes <= max"""
     size_lst = [totals_dict[key] for key in totals_dict if totals_dict[key] <= max]
     total_size = sum(size_lst)
 
@@ -75,7 +67,7 @@ def calc_total_size(totals_dict, max):
 
 
 def calc_smallest_size(totals_dict, total_space, needed_space):
-    # calculate the smallest file size that is sufficient for the provided criteria
+    """Calculate the smallest file size that is sufficient for the provided criteria"""
     available_space = total_space - totals_dict["/"]
     min_del_size = needed_space - available_space
     sufficient_dirs = [totals_dict[key] for key in totals_dict if totals_dict[key] >= min_del_size]
