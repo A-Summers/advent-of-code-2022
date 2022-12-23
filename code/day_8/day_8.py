@@ -77,11 +77,11 @@ def horizontal_dist_pipe(matrix_data, array, row, num_cols):
 
 def vertical_dist_pipe(matrix_data, array, col, num_rows):
     """Looks across a given row in both directions, for distances, and updates array"""
-    # loop over cols from left to right (dim represents the layer in the array representing a single distance type)
+    # loop over rows from top to bottom (dim represents the layer in the array representing a single distance type)
     array = distance_iterator(matrix_data, array, col,
                               start=1, to=num_rows - 1, by=1, type="row", dim=2)
 
-    # loop over cols from right to left (dim represents the layer in the array representing a single distance type)
+    # loop over rows from bottom to top (dim represents the layer in the array representing a single distance type)
     array = distance_iterator(matrix_data, array, col,
                               start=num_rows - 2, to=0, by=-1, type="row", dim=3)
 
