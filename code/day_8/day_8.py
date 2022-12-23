@@ -126,24 +126,24 @@ def distance_iterator(matrix_data, array, fixed_val, start, to, by, type, dim):
         for col in range(start, to, by):
             val = matrix_data[fixed_val, col]
             tree_view = 0
-            # check for each value, all the values to the right (include border)
+            # check for each tree, all the trees to the right or left
             for iter_col in range(col + by, to + by, by):
                 tree_view += 1
                 if matrix_data[fixed_val, iter_col] >= val:
                     break
-            # update right view array
+            # update view array
             array[fixed_val, col, dim] = tree_view
 
     if type == "row":
         for row in range(start, to, by):
             val = matrix_data[row, fixed_val]
             tree_view = 0
-            # check for each value, all the values to the right (include border)
+            # check for each tree, all the trees above or below
             for iter_row in range(row + by, to + by, by):
                 tree_view += 1
                 if matrix_data[iter_row, fixed_val] >= val:
                     break
-            # update right view array
+            # update view array
             array[row, fixed_val, dim] = tree_view
 
     return array
